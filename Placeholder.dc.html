@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  image-slot{display:block !important;width:100% !important;height:100% !important;}
+</style>
+</helmet>
+<div style="position:relative;width:100%;height:100%;overflow:hidden;background:radial-gradient(120% 100% at 50% 0%, rgba(201,162,75,0.07), rgba(0,0,0,0) 62%), repeating-linear-gradient(45deg, rgba(255,255,255,0.024) 0 2px, transparent 2px 13px), #131316;display:flex;align-items:center;justify-content:center;font-family:'Geist Mono',monospace;">
+  <span style="position:absolute;top:14px;left:14px;width:16px;height:16px;border-top:1.5px solid rgba(201,162,75,0.4);border-left:1.5px solid rgba(201,162,75,0.4);"></span>
+  <span style="position:absolute;top:14px;right:14px;width:16px;height:16px;border-top:1.5px solid rgba(201,162,75,0.4);border-right:1.5px solid rgba(201,162,75,0.4);"></span>
+  <span style="position:absolute;bottom:14px;left:14px;width:16px;height:16px;border-bottom:1.5px solid rgba(201,162,75,0.4);border-left:1.5px solid rgba(201,162,75,0.4);"></span>
+  <span style="position:absolute;bottom:14px;right:14px;width:16px;height:16px;border-bottom:1.5px solid rgba(201,162,75,0.4);border-right:1.5px solid rgba(201,162,75,0.4);"></span>
+  <div style="text-align:center;padding:18px;pointer-events:none;">
+    <div style="font-size:11px;letter-spacing:0.2em;color:rgba(227,194,119,0.92);text-transform:uppercase;line-height:1.5;">{{ label }}</div>
+    <div style="margin-top:8px;font-size:9.5px;letter-spacing:0.16em;color:rgba(255,255,255,0.3);">DROP IMAGE HERE</div>
+  </div>
+  <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ sid }}" shape="rect" placeholder=" " hint-size="100%,100%" style="position:absolute;inset:0;width:100%;height:100%;"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:640,&quot;height&quot;:400},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;IMAGE&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;sid&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}"></script>
+</body>
+</html>

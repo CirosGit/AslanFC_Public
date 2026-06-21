@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0a0a0b;color:#f4f4f3;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  ::selection{background:rgba(201,162,75,0.3);color:#fff;}
+</style>
+</helmet>
+<div style="background:#0a0a0b;overflow-x:hidden;">
+  <dc-import name="Nav" active="schedule" solid="true" hint-size="100%,74px"></dc-import>
+
+  <section style="position:relative;padding:160px 30px 60px;background:linear-gradient(180deg,#0f0f13,#0a0a0b);border-bottom:1px solid rgba(255,255,255,0.06);overflow:hidden;">
+    <img src="assets/aslan-logo.png" alt="" style="position:absolute;right:-70px;top:50%;transform:translateY(-50%);height:420px;opacity:0.05;pointer-events:none;"/>
+    <div style="max-width:1340px;margin:0 auto;position:relative;">
+      <div data-reveal="1" style="opacity:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#c9a24b;text-transform:uppercase;display:flex;align-items:center;gap:12px;"><span style="width:28px;height:1px;background:#c9a24b;"></span>Fixtures &amp; results</div>
+      <h1 data-reveal="1" data-delay="80" style="opacity:0;margin:20px 0 0;font-size:clamp(44px,6vw,84px);line-height:0.96;font-weight:800;letter-spacing:-0.025em;color:#f4f4f3;">The schedule.</h1>
+      <p data-reveal="1" data-delay="170" style="opacity:0;margin:24px 0 0;font-size:19px;line-height:1.6;color:#b4b4ba;max-width:600px;">Every match, training session, and event — all in one place.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1100px;margin:0 auto;padding:46px 30px 0;">
+    <div style="display:flex;gap:8px;background:#141417;border:1px solid rgba(255,255,255,0.08);border-radius:100px;padding:5px;width:max-content;">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="2">
+        <button onClick="{{ t.onClick }}" style="background:{{ t.bg }};color:{{ t.color }};border:none;font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:11px 26px;border-radius:100px;cursor:pointer;transition:all .25s ease;">{{ t.label }}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1100px;margin:0 auto;padding:30px 30px 100px;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+        <div data-reveal="1" style="opacity:0;display:grid;grid-template-columns:96px 1fr auto;gap:24px;align-items:center;background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px 26px;transition:border-color .25s ease, transform .25s ease;" style-hover="border-color:rgba(201,162,75,0.32);transform:translateX(4px);">
+          <div style="text-align:center;border-right:1px solid rgba(255,255,255,0.08);padding-right:20px;">
+            <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#c9a24b;text-transform:uppercase;">{{ r.m }}</div>
+            <div style="font-size:26px;font-weight:800;color:#f4f4f3;line-height:1.1;">{{ r.d }}</div>
+          </div>
+          <div>
+            <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#86868c;text-transform:uppercase;">{{ r.comp }}</div>
+            <div style="margin-top:6px;font-size:18px;font-weight:700;color:#f4f4f3;">{{ r.match }}</div>
+            <div style="margin-top:4px;font-size:13px;color:#86868c;">{{ r.meta }}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:22px;font-weight:800;color:{{ r.resultColor }};">{{ r.result }}</div>
+            <span style="display:inline-block;margin-top:6px;font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:0.1em;padding:5px 10px;border-radius:7px;background:{{ r.tagBg }};color:{{ r.tagColor }};text-transform:uppercase;">{{ r.tag }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1100,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { tab: 'UPCOMING' };
+  reveal(el) {
+    if (el._r) return;
+    el._r = true;
+    const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+    const a = el._anim = el.animate(
+      [{ opacity: 0, transform: 'translateY(22px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 700, delay: d, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' }
+    );
+    a.onfinish = () => { el.style.opacity = '1'; el.style.transform = 'none'; };
+  }
+  setup() {
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { this.reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -4% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => { if (!el._r) io.observe(el); });
+  }
+  componentDidMount() {
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setup()));
+    this._t = setTimeout(() => this.setup(), 600);
+    this._s = setTimeout(() => { document.querySelectorAll('[data-reveal]').forEach((el) => { if (el._r) return; const r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) { if (el._anim) { try { el._anim.cancel(); } catch (e) {} } el.style.opacity = '1'; el.style.transform = 'none'; el._r = true; } }); }, 1800);
+  }
+  componentDidUpdate() { this.setup(); }
+  renderVals() {
+    const gold = { tagBg: 'rgba(201,162,75,0.15)', tagColor: '#e3c277' };
+    const blue = { tagBg: 'rgba(86,132,224,0.16)', tagColor: '#93b2f0' };
+    const red = { tagBg: 'rgba(208,40,46,0.16)', tagColor: '#f0888b' };
+    const upcoming = [
+      { m: 'MAY', d: '18', comp: 'Training', match: 'First Team Session', meta: '6:00 PM · Orlando Sports Complex', result: '', resultColor: '#86868c', tag: 'Training', ...gold },
+      { m: 'MAY', d: '21', comp: 'Friendly', match: 'Aslan FC vs Kissimmee City', meta: '7:30 PM · Kissimmee, FL', result: 'H', resultColor: '#86868c', tag: 'Friendly', ...blue },
+      { m: 'MAY', d: '25', comp: 'USSL League', match: 'Aslan FC vs Orlando United', meta: '7:00 PM · Home · Orlando, FL', result: 'H', resultColor: '#e3c277', tag: 'Match', ...red },
+      { m: 'MAY', d: '28', comp: 'Training', match: 'First Team Session', meta: '6:00 PM · Orlando Sports Complex', result: '', resultColor: '#86868c', tag: 'Training', ...gold },
+      { m: 'JUN', d: '01', comp: 'USSL League', match: 'Tampa Bay FC vs Aslan FC', meta: '7:00 PM · Away · Tampa, FL', result: 'A', resultColor: '#e3c277', tag: 'Match', ...red },
+    ];
+    const results = [
+      { m: 'MAY', d: '11', comp: 'USSL League', match: 'Aslan FC vs Lakeland SC', meta: 'Home · Orlando, FL', result: '3–1', resultColor: '#5fcf8e', tag: 'Win', tagBg: 'rgba(60,180,110,0.16)', tagColor: '#7fdca5' },
+      { m: 'MAY', d: '04', comp: 'USSL League', match: 'Daytona FC vs Aslan FC', meta: 'Away · Daytona, FL', result: '2–2', resultColor: '#e3c277', tag: 'Draw', tagBg: 'rgba(201,162,75,0.16)', tagColor: '#e3c277' },
+      { m: 'APR', d: '27', comp: 'USSL League', match: 'Aslan FC vs Orlando United', meta: 'Home · Orlando, FL', result: '1–0', resultColor: '#5fcf8e', tag: 'Win', tagBg: 'rgba(60,180,110,0.16)', tagColor: '#7fdca5' },
+      { m: 'APR', d: '20', comp: 'Cup', match: 'Miami Storm vs Aslan FC', meta: 'Away · Miami, FL', result: '0–2', resultColor: '#f0888b', tag: 'Loss', tagBg: 'rgba(208,40,46,0.16)', tagColor: '#f0888b' },
+    ];
+    const tabOpts = [['UPCOMING', 'Upcoming'], ['RESULTS', 'Results']];
+    const tabs = tabOpts.map(([v, label]) => {
+      const active = this.state.tab === v;
+      return {
+        label,
+        bg: active ? 'linear-gradient(180deg,#e7c97e,#c9a24b)' : 'transparent',
+        color: active ? '#1c1408' : '#b4b4ba',
+        onClick: () => this.setState({ tab: v }),
+      };
+    });
+    return { tabs, rows: this.state.tab === 'UPCOMING' ? upcoming : results };
+  }
+}
+</script>
+</body>
+</html>

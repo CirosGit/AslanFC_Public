@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0a0a0b;color:#f4f4f3;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  ::selection{background:rgba(201,162,75,0.3);color:#fff;}
+</style>
+</helmet>
+<div style="background:#0a0a0b;overflow-x:hidden;">
+  <dc-import name="Nav" active="sponsors" solid="true" hint-size="100%,74px"></dc-import>
+
+  <section style="position:relative;padding:160px 30px 70px;background:linear-gradient(180deg,#0f0f13,#0a0a0b);border-bottom:1px solid rgba(255,255,255,0.06);overflow:hidden;">
+    <img src="assets/aslan-logo.png" alt="" style="position:absolute;right:-70px;top:50%;transform:translateY(-50%);height:420px;opacity:0.05;pointer-events:none;"/>
+    <div style="max-width:1340px;margin:0 auto;position:relative;">
+      <div data-reveal="1" style="opacity:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#c9a24b;text-transform:uppercase;display:flex;align-items:center;gap:12px;"><span style="width:28px;height:1px;background:#c9a24b;"></span>Partners</div>
+      <h1 data-reveal="1" data-delay="80" style="opacity:0;margin:20px 0 0;font-size:clamp(44px,6vw,84px);line-height:0.96;font-weight:800;letter-spacing:-0.025em;color:#f4f4f3;max-width:900px;">Build something bigger.</h1>
+      <p data-reveal="1" data-delay="170" style="opacity:0;margin:24px 0 0;font-size:19px;line-height:1.6;color:#b4b4ba;max-width:620px;">Partnering with Aslan FC means investing in local talent, community, and a brand on the rise across Central Florida.</p>
+    </div>
+  </section>
+
+  <!-- CURRENT SPONSORS -->
+  <section style="max-width:1340px;margin:0 auto;padding:80px 30px 50px;">
+    <div data-reveal="1" style="opacity:0;text-align:center;margin-bottom:40px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#86868c;text-transform:uppercase;">Trusted by great partners</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <sc-for list="{{ sponsors }}" as="sp" hint-placeholder-count="8">
+        <div data-reveal="1" data-delay="{{ sp.delay }}" style="opacity:0;height:120px;display:flex;align-items:center;justify-content:center;background:#141417;border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;padding:18px;transition:all .25s ease;" style-hover="border-color:rgba(201,162,75,0.35);background:#18181c;transform:translateY(-3px);">
+          <dc-import name="Placeholder" sid="sponsors-logo-{{ $index }}" label="SPONSOR LOGO" hint-size="100%,100%" style="width:100%;height:100%;display:block;border-radius:8px;overflow:hidden;"></dc-import>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- WHY PARTNER -->
+  <section style="background:#0c0c0e;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);">
+    <div style="max-width:1340px;margin:0 auto;padding:80px 30px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <div data-reveal="1" data-delay="{{ s.delay }}" style="opacity:0;text-align:center;">
+          <div style="font-size:clamp(38px,4.4vw,56px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(180deg,#f1d391,#c9a24b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;">{{ s.v }}</div>
+          <div style="margin-top:12px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#9b9ba1;text-transform:uppercase;">{{ s.l }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- TIERS -->
+  <section style="max-width:1340px;margin:0 auto;padding:90px 30px;">
+    <div data-reveal="1" style="opacity:0;text-align:center;margin-bottom:54px;">
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#c9a24b;text-transform:uppercase;">Sponsorship tiers</div>
+      <h2 style="margin:14px 0 0;font-size:clamp(30px,3.6vw,46px);font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">Choose your level.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch;">
+      <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+        <div data-reveal="1" data-delay="{{ t.delay }}" style="opacity:0;display:flex;flex-direction:column;background:{{ t.bg }};border:1px solid {{ t.border }};border-radius:22px;padding:36px;transition:transform .25s ease;" style-hover="transform:translateY(-5px);">
+          <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:{{ t.accent }};text-transform:uppercase;">{{ t.tag }}</div>
+          <h3 style="margin:16px 0 0;font-size:28px;font-weight:800;color:#f4f4f3;">{{ t.name }}</h3>
+          <div style="margin:8px 0 0;font-size:15px;color:#9b9ba1;">{{ t.price }}</div>
+          <div style="height:1px;background:rgba(255,255,255,0.08);margin:24px 0;"></div>
+          <div style="display:flex;flex-direction:column;gap:12px;flex:1;">
+            <sc-for list="{{ t.perks }}" as="perk" hint-placeholder-count="4">
+              <div style="display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:#c7c7cc;"><span style="color:{{ t.accent }};margin-top:1px;">✓</span>{{ perk }}</div>
+            </sc-for>
+          </div>
+          <a href="Contact.dc.html" style="margin-top:28px;text-align:center;text-decoration:none;background:{{ t.btnBg }};color:{{ t.btnColor }};border:1px solid {{ t.border }};font-weight:800;font-size:13px;letter-spacing:0.05em;text-transform:uppercase;padding:14px;border-radius:12px;transition:transform .2s ease;" style-hover="transform:translateY(-2px);">{{ t.cta }}</a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="max-width:1340px;margin:0 auto;padding:10px 30px 100px;">
+    <div data-reveal="1" style="opacity:0;border-radius:24px;border:1px solid rgba(201,162,75,0.22);background:linear-gradient(120deg,#1a1610,#121215);padding:56px;text-align:center;">
+      <h2 style="margin:0;font-size:clamp(28px,3.2vw,42px);font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">Let's talk partnership.</h2>
+      <p style="margin:14px auto 0;font-size:16px;color:#b4b4ba;max-width:520px;">Custom packages available. Reach out and we'll build something that works for your brand.</p>
+      <a href="Contact.dc.html" style="display:inline-flex;margin-top:28px;align-items:center;text-decoration:none;background:linear-gradient(180deg,#e7c97e,#c9a24b);color:#1c1408;font-weight:800;font-size:14px;letter-spacing:0.05em;text-transform:uppercase;padding:16px 32px;border-radius:100px;transition:transform .25s ease;" style-hover="transform:translateY(-2px);">Become a Sponsor</a>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1340,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  reveal(el) {
+    if (el._r) return;
+    el._r = true;
+    const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+    const a = el._anim = el.animate(
+      [{ opacity: 0, transform: 'translateY(26px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 780, delay: d, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' }
+    );
+    a.onfinish = () => { el.style.opacity = '1'; el.style.transform = 'none'; };
+  }
+  setup() {
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { this.reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => { if (!el._r) io.observe(el); });
+  }
+  componentDidMount() {
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setup()));
+    this._t = setTimeout(() => this.setup(), 600);
+    this._s = setTimeout(() => { document.querySelectorAll('[data-reveal]').forEach((el) => { if (el._r) return; const r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) { if (el._anim) { try { el._anim.cancel(); } catch (e) {} } el.style.opacity = '1'; el.style.transform = 'none'; el._r = true; } }); }, 1800);
+  }
+  renderVals() {
+    return {
+      sponsors: [
+        { name: 'AdventHealth', delay: '0' }, { name: 'Nike', delay: '60' }, { name: 'BodyArmor', delay: '120' }, { name: 'Soccer.com', delay: '180' },
+        { name: 'Puma', delay: '0' }, { name: 'Publix', delay: '60' }, { name: 'Gatorade', delay: '120' }, { name: 'Your Brand', delay: '180' },
+      ],
+      stats: [
+        { v: '50K+', l: 'Social Reach', delay: '0' },
+        { v: '90+', l: 'Players & Families', delay: '100' },
+        { v: '20+', l: 'Match Days / Year', delay: '200' },
+        { v: '100%', l: 'Local Impact', delay: '300' },
+      ],
+      tiers: [
+        { tag: 'Entry', name: 'Community', price: 'Supporter level', bg: '#151518', border: 'rgba(255,255,255,0.08)', accent: '#9b9ba1', btnBg: 'transparent', btnColor: '#f4f4f3', cta: 'Enquire', delay: '0', perks: ['Logo on website partners page', 'Social media shout-outs', 'Matchday program mention'] },
+        { tag: 'Most popular', name: 'Gold', price: 'Featured partner', bg: 'linear-gradient(180deg,#1a1610,#151518)', border: 'rgba(201,162,75,0.4)', accent: '#e3c277', btnBg: 'linear-gradient(180deg,#e7c97e,#c9a24b)', btnColor: '#1c1408', cta: 'Get started', delay: '100', perks: ['Everything in Community', 'Logo on training kit', 'Pitch-side banner at home games', 'Quarterly social campaign', 'Hospitality at home matches'] },
+        { tag: 'Premier', name: 'Lion', price: 'Principal partner', bg: '#151518', border: 'rgba(255,255,255,0.08)', accent: '#f0888b', btnBg: 'transparent', btnColor: '#f4f4f3', cta: 'Enquire', delay: '200', perks: ['Everything in Gold', 'Front-of-shirt branding', 'Stadium / venue naming rights', 'Dedicated content series', 'First right of renewal'] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

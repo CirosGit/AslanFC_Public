@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0a0a0b;color:#f4f4f3;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  ::selection{background:rgba(201,162,75,0.3);color:#fff;}
+</style>
+</helmet>
+<div style="background:#0a0a0b;overflow-x:hidden;">
+  <dc-import name="Nav" active="about" solid="true" hint-size="100%,74px"></dc-import>
+
+  <!-- PAGE HERO -->
+  <section style="position:relative;padding:160px 30px 80px;background:linear-gradient(180deg,#0f0f13,#0a0a0b);border-bottom:1px solid rgba(255,255,255,0.06);overflow:hidden;">
+    <img src="assets/aslan-logo.png" alt="" style="position:absolute;right:-70px;top:50%;transform:translateY(-50%);height:420px;opacity:0.05;pointer-events:none;"/>
+    <div style="max-width:1340px;margin:0 auto;position:relative;">
+      <div data-reveal="1" style="opacity:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#c9a24b;text-transform:uppercase;display:flex;align-items:center;gap:12px;"><span style="width:28px;height:1px;background:#c9a24b;"></span>About the club</div>
+      <h1 data-reveal="1" data-delay="80" style="opacity:0;margin:20px 0 0;font-size:clamp(44px,6vw,84px);line-height:0.96;font-weight:800;letter-spacing:-0.025em;color:#f4f4f3;max-width:900px;">More than a club. A movement.</h1>
+      <p data-reveal="1" data-delay="170" style="opacity:0;margin:24px 0 0;font-size:19px;line-height:1.6;color:#b4b4ba;max-width:660px;">Aslan FC is a soccer club based in Central Florida dedicated to developing talented players and creating opportunities for athletes to reach their highest potential.</p>
+    </div>
+  </section>
+
+  <!-- MISSION + IMAGE -->
+  <section style="max-width:1340px;margin:0 auto;padding:90px 30px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+    <div data-reveal="1" style="opacity:0;">
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#c9a24b;text-transform:uppercase;margin-bottom:18px;">Our mission</div>
+      <h2 style="margin:0;font-size:clamp(30px,3.6vw,44px);line-height:1.08;font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">Building more than a club — a legacy.</h2>
+      <p style="margin:22px 0 0;font-size:16px;line-height:1.7;color:#9b9ba1;">Founded on the principles of excellence, discipline, integrity, and community, Aslan FC provides a competitive environment where players can grow both on and off the field. Our goal is not only to compete at the highest levels of the U.S. soccer pyramid, but to build a sustainable pathway for future generations through a comprehensive youth academy.</p>
+      <p style="margin:18px 0 0;font-size:16px;line-height:1.7;color:#9b9ba1;">We believe every player deserves the opportunity to develop their talent, pursue their dreams, and become a leader within their community. Through professional coaching, player development programs, and a commitment to excellence, we are building a legacy — where talent is developed, character is built, and opportunities are created.</p>
+    </div>
+    <div data-reveal="1" data-delay="120" style="opacity:0;aspect-ratio:4/5;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);">
+      <dc-import name="Placeholder" sid="about-portrait" label="TEAM PORTRAIT (VERTICAL)" hint-size="100%,100%" style="width:100%;height:100%;display:block;"></dc-import>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section style="background:#0c0c0e;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);">
+    <div style="max-width:1340px;margin:0 auto;padding:90px 30px;">
+      <div data-reveal="1" style="opacity:0;text-align:center;margin-bottom:54px;">
+        <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#c9a24b;text-transform:uppercase;">What we stand for</div>
+        <h2 style="margin:14px 0 0;font-size:clamp(30px,3.6vw,46px);font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">The pride's code.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;">
+        <sc-for list="{{ values }}" as="v" hint-placeholder-count="4">
+          <div data-reveal="1" data-delay="{{ v.delay }}" style="opacity:0;background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:34px;transition:border-color .25s ease, transform .25s ease;" style-hover="border-color:rgba(201,162,75,0.35);transform:translateY(-4px);">
+            <div style="font-family:'Geist Mono',monospace;font-size:13px;color:#c9a24b;letter-spacing:0.1em;">{{ v.num }}</div>
+            <h3 style="margin:18px 0 0;font-size:22px;font-weight:800;color:#f4f4f3;">{{ v.title }}</h3>
+            <p style="margin:12px 0 0;font-size:15px;line-height:1.65;color:#9b9ba1;">{{ v.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section style="max-width:1340px;margin:0 auto;padding:90px 30px;">
+    <div data-reveal="1" style="opacity:0;margin-bottom:50px;max-width:640px;">
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#c9a24b;text-transform:uppercase;">The journey</div>
+      <h2 style="margin:14px 0 0;font-size:clamp(30px,3.6vw,46px);font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">How we got here.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="4">
+        <div data-reveal="1" style="opacity:0;display:grid;grid-template-columns:140px 1fr;gap:32px;padding:26px 0;border-top:1px solid rgba(255,255,255,0.08);">
+          <div style="font-size:24px;font-weight:800;color:#e3c277;">{{ t.year }}</div>
+          <div>
+            <h3 style="margin:0;font-size:19px;font-weight:700;color:#f4f4f3;">{{ t.title }}</h3>
+            <p style="margin:8px 0 0;font-size:15px;line-height:1.6;color:#9b9ba1;max-width:620px;">{{ t.body }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section style="max-width:1340px;margin:0 auto;padding:30px 30px 100px;">
+    <div data-reveal="1" style="opacity:0;border-radius:24px;border:1px solid rgba(201,162,75,0.22);background:linear-gradient(120deg,#1a1610,#121215);padding:56px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+      <div>
+        <h2 style="margin:0;font-size:clamp(26px,3vw,38px);font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">Ready to be part of the pride?</h2>
+        <p style="margin:12px 0 0;font-size:16px;color:#b4b4ba;">Tryouts, academy spots, and partnerships — there's a place for you.</p>
+      </div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="Contact.dc.html" style="display:inline-flex;align-items:center;text-decoration:none;background:linear-gradient(180deg,#e7c97e,#c9a24b);color:#1c1408;font-weight:800;font-size:14px;letter-spacing:0.04em;padding:15px 28px;border-radius:100px;transition:transform .25s ease;" style-hover="transform:translateY(-2px);">GET IN TOUCH</a>
+        <a href="Teams.dc.html" style="display:inline-flex;align-items:center;text-decoration:none;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.16);color:#f4f4f3;font-weight:700;font-size:14px;letter-spacing:0.04em;padding:15px 26px;border-radius:100px;transition:all .25s ease;" style-hover="border-color:rgba(201,162,75,0.5);">VIEW TEAMS</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1340,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  reveal(el) {
+    if (el._r) return;
+    el._r = true;
+    const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+    const a = el._anim = el.animate(
+      [{ opacity: 0, transform: 'translateY(26px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 780, delay: d, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' }
+    );
+    a.onfinish = () => { el.style.opacity = '1'; el.style.transform = 'none'; };
+  }
+  setup() {
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { this.reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => { if (!el._r) io.observe(el); });
+  }
+  componentDidMount() {
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setup()));
+    this._t = setTimeout(() => this.setup(), 600);
+    this._s = setTimeout(() => { document.querySelectorAll('[data-reveal]').forEach((el) => { if (el._r) return; const r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) { if (el._anim) { try { el._anim.cancel(); } catch (e) {} } el.style.opacity = '1'; el.style.transform = 'none'; el._r = true; } }); }, 1800);
+  }
+  renderVals() {
+    return {
+      values: [
+        { num: '01', title: 'Excellence', body: 'We chase the highest standard in everything — training, competition, and how we carry the crest.', delay: '0' },
+        { num: '02', title: 'Discipline', body: 'Show up, work hard, and hold each other accountable, on the pitch and in life.', delay: '100' },
+        { num: '03', title: 'Integrity', body: 'We do things the right way. Honesty and respect are non-negotiable in the pride.', delay: '200' },
+        { num: '04', title: 'Community', body: 'We grow together and give back, building leaders who strengthen the communities they come from.', delay: '300' },
+      ],
+      timeline: [
+        { year: '2024', title: 'Aslan FC is founded', body: 'A vision becomes reality as the club is established in Central Florida with a first squad and a clear mission.' },
+        { year: '2025', title: 'First competitive season', body: 'The team enters league play, building a reputation for attacking football and a fierce community following.' },
+        { year: '2026', title: 'Academy launches', body: 'The youth academy opens its doors, creating a true pathway from grassroots to the first team.' },
+        { year: 'Next', title: 'The road to professional', body: 'Expanding partnerships, facilities, and talent as we chase the next level — together.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

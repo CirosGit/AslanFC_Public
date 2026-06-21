@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0a0a0b;color:#f4f4f3;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  ::selection{background:rgba(201,162,75,0.3);color:#fff;}
+  input::placeholder{color:#6c6c72;}
+  @keyframes heroIn{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @keyframes scrollPulse{0%,100%{opacity:0.25;}50%{opacity:1;}}
+  /* Reveal: a re-render loop keeps restarting the inline CSS transitions and
+     strands them at opacity:0 — and a running transition outranks even !important.
+     So neutralise those transitions and drive the reveal with a CSS *animation*
+     keyed on a data-attribute React never manages; animations hold their end
+     state (fill:both) and survive every re-render, so content can't get stuck. */
+  @keyframes revIn{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+  [data-reveal]{transition:none !important;}
+  [data-reveal][data-shown]{animation:revIn .8s cubic-bezier(.2,.7,.2,1) both;}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="background:#0a0a0b;overflow-x:hidden;">
+
+  <dc-import name="Nav" active="home" hint-size="100%,74px"></dc-import>
+
+  <!-- ============ HERO ============ -->
+  <section style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#0a0a0b;">
+    <div data-parallax="0.16" style="position:absolute;left:0;right:0;top:-10%;height:120%;will-change:transform;">
+      <div style="position:absolute;inset:0;overflow:hidden;">
+        <div style="position:absolute;top:50%;left:50%;width:135vh;height:135vw;transform:translate(-50%,-50%) rotate(90deg);background:url('assets/hero-huddle.png') center center / cover no-repeat;"></div>
+        <div style="position:absolute;inset:0;background:rgba(10,10,11,0.5);"></div>
+      </div>
+    </div>
+    <div style="position:absolute;inset:0;background:linear-gradient(100deg, rgba(8,8,9,0.95) 0%, rgba(8,8,9,0.72) 42%, rgba(8,8,9,0.22) 72%, rgba(8,8,9,0.5) 100%);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(0deg, #0a0a0b 1%, rgba(10,10,11,0) 32%);"></div>
+    <div style="position:relative;z-index:5;max-width:1340px;margin:0 auto;padding:120px 30px 90px;width:100%;">
+      <div style="max-width:800px;">
+        <div data-reveal="1" style="opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#e3c277;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:13px;"><span style="width:30px;height:1px;background:#c9a24b;display:inline-block;"></span>Developing Talent · Building Character</div>
+        <h1 style="margin:0;font-size:clamp(52px,7.4vw,108px);line-height:0.93;font-weight:800;letter-spacing:-0.025em;color:#f4f4f3;">
+          <span data-reveal="1" data-delay="80" style="display:block;opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);">CREATING</span>
+          <span data-reveal="1" data-delay="180" style="display:block;opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);background:linear-gradient(180deg,#f1d391,#c9a24b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">OPPORTUNITIES.</span>
+        </h1>
+        <p data-reveal="1" data-delay="320" style="opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);margin:28px 0 0;font-size:19px;line-height:1.6;color:#c7c7cc;max-width:520px;">Aslan FC is a semi-professional soccer club in Central Florida committed to developing players, leaders, and future professionals — on and off the field.</p>
+        <div data-reveal="1" data-delay="440" style="opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;">
+          <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;background:linear-gradient(180deg,#e7c97e,#c9a24b);color:#1c1408;font-weight:800;font-size:14px;letter-spacing:0.04em;padding:15px 28px;border-radius:100px;box-shadow:0 10px 30px rgba(201,162,75,0.3);transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 16px 42px rgba(201,162,75,0.46);">REGISTER NOW</a>
+          <a href="Schedule.dc.html" style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.16);color:#f4f4f3;font-weight:700;font-size:14px;letter-spacing:0.04em;padding:15px 26px;border-radius:100px;transition:all .25s ease;backdrop-filter:blur(6px);" style-hover="border-color:rgba(201,162,75,0.55);background:rgba(201,162,75,0.08);">VIEW SCHEDULE</a>
+          <a href="Donate.dc.html" style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;background:transparent;border:1px solid rgba(255,255,255,0.16);color:#f4f4f3;font-weight:700;font-size:14px;letter-spacing:0.04em;padding:15px 26px;border-radius:100px;transition:all .25s ease;" style-hover="border-color:rgba(201,162,75,0.55);color:#e3c277;">DONATE</a>
+        </div>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:30px;left:0;right:0;z-index:5;display:flex;justify-content:center;">
+      <div data-reveal="1" data-delay="700" style="opacity:0;transform:translateY(12px);transition:opacity .85s ease, transform .85s ease;display:flex;flex-direction:column;align-items:center;gap:9px;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.24em;color:rgba(255,255,255,0.45);">
+        SCROLL
+        <span style="width:1px;height:42px;background:linear-gradient(#c9a24b,rgba(201,162,75,0));animation:scrollPulse 1.9s ease-in-out infinite;"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div style="background:#0c0c0e;border-top:1px solid rgba(201,162,75,0.14);border-bottom:1px solid rgba(201,162,75,0.14);overflow:hidden;padding:15px 0;">
+    <div style="display:flex;gap:40px;white-space:nowrap;width:max-content;animation:marquee 30s linear infinite;font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:0.18em;color:rgba(201,162,75,0.72);text-transform:uppercase;">
+      <span>Developing Talent ✦ Building Character ✦ Creating Opportunities ✦ Central Florida ✦ Est. 2024 ✦ One Pride One Club ✦</span>
+      <span>Developing Talent ✦ Building Character ✦ Creating Opportunities ✦ Central Florida ✦ Est. 2024 ✦ One Pride One Club ✦</span>
+    </div>
+  </div>
+
+  <!-- ============ CLUB AT A GLANCE (3 cards) ============ -->
+  <section style="max-width:1340px;margin:0 auto;padding:110px 30px 60px;">
+    <div data-reveal="1" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);max-width:680px;margin-bottom:48px;">
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#c9a24b;text-transform:uppercase;display:flex;align-items:center;gap:12px;"><span style="width:24px;height:1px;background:#c9a24b;"></span>Stay in the loop</div>
+      <h2 style="margin:16px 0 0;font-size:clamp(34px,4.2vw,52px);line-height:1.02;font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">Everything happening at the club.</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.05fr 0.95fr 0.95fr;gap:22px;align-items:start;">
+
+      <!-- Schedule card -->
+      <div data-reveal="1" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:22px;padding:28px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;">
+          <h3 style="margin:0;font-size:18px;font-weight:800;letter-spacing:0.01em;color:#f4f4f3;text-transform:uppercase;">Upcoming Schedule</h3>
+          <a href="Schedule.dc.html" style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:0.12em;color:#c9a24b;text-decoration:none;text-transform:uppercase;" style-hover="color:#e3c277;">View all →</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <sc-for list="{{ schedule }}" as="ev" hint-placeholder-count="5">
+            <div style="display:flex;align-items:center;gap:14px;padding:12px;border:1px solid rgba(255,255,255,0.06);border-radius:13px;background:#0f0f12;transition:border-color .25s ease, transform .25s ease;" style-hover="border-color:rgba(201,162,75,0.35);transform:translateX(3px);">
+              <div style="flex:none;width:48px;text-align:center;">
+                <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#c9a24b;text-transform:uppercase;">{{ ev.m }}</div>
+                <div style="font-size:22px;font-weight:800;color:#f4f4f3;line-height:1.1;">{{ ev.d }}</div>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:14.5px;font-weight:700;color:#f4f4f3;">{{ ev.title }}</div>
+                <div style="font-size:12px;color:#86868c;margin-top:2px;">{{ ev.time }} · {{ ev.loc }}</div>
+              </div>
+              <span style="flex:none;font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:0.1em;padding:5px 9px;border-radius:7px;background:{{ ev.tagBg }};color:{{ ev.tagColor }};text-transform:uppercase;">{{ ev.tag }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <a href="Schedule.dc.html" style="display:block;text-align:center;margin-top:18px;padding:13px;border-radius:11px;border:1px solid rgba(201,162,75,0.3);color:#e3c277;text-decoration:none;font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;transition:background .25s ease;" style-hover="background:rgba(201,162,75,0.08);">View Full Calendar</a>
+      </div>
+
+      <!-- Team card -->
+      <div data-reveal="1" data-delay="120" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:22px;padding:28px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;">
+          <h3 style="margin:0;font-size:18px;font-weight:800;color:#f4f4f3;text-transform:uppercase;">Meet The Team</h3>
+          <a href="Players.dc.html" style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:0.12em;color:#c9a24b;text-decoration:none;text-transform:uppercase;" style-hover="color:#e3c277;">Roster →</a>
+        </div>
+        <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.16em;color:#6c6c72;text-transform:uppercase;margin-bottom:11px;">Coaching Staff</div>
+        <div style="display:flex;align-items:center;gap:13px;padding:12px;border:1px solid rgba(255,255,255,0.06);border-radius:13px;background:#0f0f12;margin-bottom:18px;">
+          <div style="flex:none;width:46px;height:46px;border-radius:50%;overflow:hidden;border:1.5px solid rgba(201,162,75,0.4);">
+            <dc-import name="Placeholder" sid="home-coach" label="" hint-size="46px,46px" style="width:46px;height:46px;display:block;"></dc-import>
+          </div>
+          <div><div style="font-size:14.5px;font-weight:700;color:#f4f4f3;">Ruben Ramos</div><div style="font-size:12px;color:#86868c;">Founder &amp; Head Coach</div></div>
+        </div>
+        <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.16em;color:#6c6c72;text-transform:uppercase;margin-bottom:11px;">Featured Players</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <sc-for list="{{ players }}" as="p" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:13px;padding:9px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:11px;background:#0f0f12;transition:border-color .25s ease;" style-hover="border-color:rgba(201,162,75,0.32);">
+              <span style="flex:none;width:30px;font-size:18px;font-weight:800;color:#c9a24b;text-align:center;">{{ p.n }}</span>
+              <div style="flex:1;"><div style="font-size:13.5px;font-weight:700;color:#f4f4f3;">{{ p.name }}</div><div style="font-size:11.5px;color:#86868c;">{{ p.pos }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+        <a href="Players.dc.html" style="display:block;text-align:center;margin-top:18px;padding:13px;border-radius:11px;border:1px solid rgba(201,162,75,0.3);color:#e3c277;text-decoration:none;font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;transition:background .25s ease;" style-hover="background:rgba(201,162,75,0.08);">View Full Roster</a>
+      </div>
+
+      <!-- Support card -->
+      <div data-reveal="1" data-delay="240" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);background:linear-gradient(180deg,#1a1610,#151518);border:1px solid rgba(201,162,75,0.22);border-radius:22px;padding:28px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+          <h3 style="margin:0;font-size:18px;font-weight:800;color:#f4f4f3;text-transform:uppercase;">Support Aslan FC</h3>
+          <span style="color:#c9a24b;font-size:16px;">♥</span>
+        </div>
+        <p style="margin:0 0 20px;font-size:13.5px;line-height:1.6;color:#b4b4ba;">Your donation funds equipment, training, and field time — building a brighter future for our players.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;">
+          <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="4">
+            <div style="border:1px solid rgba(255,255,255,0.08);border-radius:13px;padding:14px 12px;text-align:center;background:#0f0f12;cursor:pointer;transition:all .25s ease;" style-hover="border-color:rgba(201,162,75,0.55);background:rgba(201,162,75,0.07);transform:translateY(-2px);">
+              <div style="font-size:21px;font-weight:800;color:#e3c277;">{{ t.amt }}</div>
+              <div style="font-size:11px;color:#9b9ba1;margin-top:3px;line-height:1.35;">{{ t.desc }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <a href="Donate.dc.html" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:12px;background:linear-gradient(180deg,#e7c97e,#c9a24b);color:#1c1408;text-decoration:none;font-size:13.5px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;box-shadow:0 8px 24px rgba(201,162,75,0.26);transition:transform .25s ease;" style-hover="transform:translateY(-2px);">Donate Now ♥</a>
+        <div style="margin-top:16px;text-align:center;font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:#6c6c72;text-transform:uppercase;">Secure · PayPal · Venmo · Zelle · Stripe</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section style="background:#0c0c0e;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);margin-top:50px;">
+    <div data-reveal="1" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);max-width:1340px;margin:0 auto;padding:60px 30px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <div style="text-align:center;position:relative;">
+          <div style="font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(180deg,#f1d391,#c9a24b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;"><span data-count="{{ s.v }}" data-suffix="{{ s.suffix }}">0</span></div>
+          <div style="margin-top:12px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#9b9ba1;text-transform:uppercase;">{{ s.l }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ LATEST NEWS ============ -->
+  <section style="max-width:1340px;margin:0 auto;padding:110px 30px 50px;">
+    <div data-reveal="1" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:46px;flex-wrap:wrap;">
+      <div style="max-width:640px;">
+        <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#c9a24b;text-transform:uppercase;display:flex;align-items:center;gap:12px;"><span style="width:24px;height:1px;background:#c9a24b;"></span>From the club</div>
+        <h2 style="margin:16px 0 0;font-size:clamp(34px,4.2vw,52px);line-height:1.02;font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">Latest news &amp; stories.</h2>
+      </div>
+      <a href="News.dc.html" style="text-decoration:none;color:#e3c277;font-size:13.5px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;border-bottom:1px solid rgba(201,162,75,0.4);padding-bottom:3px;">All News →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
+        <a href="News.dc.html" data-reveal="1" data-delay="{{ n.delay }}" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);text-decoration:none;background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;display:block;">
+          <div style="overflow:hidden;aspect-ratio:16/10;">
+            <div style="width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1);" style-hover="transform:scale(1.07);">
+              <dc-import name="Placeholder" sid="home-news-{{ $index }}" label="{{ n.img }}" hint-size="100%,100%" style="width:100%;height:100%;display:block;"></dc-import>
+            </div>
+          </div>
+          <div style="padding:22px;">
+            <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.16em;color:#c9a24b;text-transform:uppercase;">{{ n.cat }} · {{ n.date }}</div>
+            <h3 style="margin:12px 0 0;font-size:18px;font-weight:700;line-height:1.3;color:#f4f4f3;">{{ n.title }}</h3>
+            <div style="margin-top:16px;font-size:12.5px;font-weight:700;letter-spacing:0.04em;color:#9b9ba1;text-transform:uppercase;">Read story →</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ ACADEMY CTA ============ -->
+  <section style="max-width:1340px;margin:0 auto;padding:70px 30px;">
+    <div data-reveal="1" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);position:relative;border-radius:28px;overflow:hidden;border:1px solid rgba(201,162,75,0.2);min-height:440px;display:flex;align-items:center;">
+      <div data-parallax="0.08" style="position:absolute;left:0;right:0;top:-15%;height:130%;will-change:transform;">
+        <dc-import name="Placeholder" sid="home-academy" label="ACADEMY — TRAINING FACILITY (WIDE)" hint-size="100%,100%" style="position:absolute;inset:0;"></dc-import>
+      </div>
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(8,8,9,0.96) 0%, rgba(8,8,9,0.82) 45%, rgba(8,8,9,0.3) 100%);"></div>
+      <div style="position:relative;z-index:3;padding:64px 56px;max-width:600px;">
+        <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#e3c277;text-transform:uppercase;margin-bottom:18px;">The future starts here</div>
+        <h2 style="margin:0;font-size:clamp(36px,4.6vw,58px);line-height:1.0;font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">Aslan FC<br/>Academy.</h2>
+        <p style="margin:24px 0 0;font-size:17px;line-height:1.6;color:#c7c7cc;max-width:460px;">We're building a top-level academy to develop young athletes in a professional environment. Reach out to learn how your player can be part of the journey.</p>
+        <a href="Academy.dc.html" style="display:inline-flex;align-items:center;gap:9px;margin-top:34px;text-decoration:none;background:linear-gradient(180deg,#e7c97e,#c9a24b);color:#1c1408;font-weight:800;font-size:14px;letter-spacing:0.04em;padding:16px 30px;border-radius:100px;box-shadow:0 12px 34px rgba(201,162,75,0.32);transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 18px 44px rgba(201,162,75,0.48);">Get More Information</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSTAGRAM ============ -->
+  <section style="max-width:1340px;margin:0 auto;padding:60px 30px 50px;">
+    <div data-reveal="1" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#c9a24b;text-transform:uppercase;display:flex;align-items:center;gap:12px;"><span style="width:24px;height:1px;background:#c9a24b;"></span>Follow our journey</div>
+        <h2 style="margin:16px 0 0;font-size:clamp(34px,4.2vw,52px);line-height:1.02;font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">@aslanfc</h2>
+      </div>
+      <a href="#" style="text-decoration:none;color:#e3c277;font-size:13.5px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;border-bottom:1px solid rgba(201,162,75,0.4);padding-bottom:3px;">Follow on Instagram →</a>
+    </div>
+    <div data-reveal="1" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);display:grid;grid-template-columns:repeat(6,1fr);gap:14px;">
+      <sc-for list="{{ igTiles }}" as="t" hint-placeholder-count="6">
+        <div style="aspect-ratio:4/5;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);">
+          <div style="width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1);" style-hover="transform:scale(1.08);">
+            <dc-import name="Placeholder" sid="home-ig-{{ $index }}" label="{{ t }}" hint-size="100%,100%" style="width:100%;height:100%;display:block;"></dc-import>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ SPONSORS ============ -->
+  <section style="max-width:1340px;margin:0 auto;padding:70px 30px 100px;">
+    <div data-reveal="1" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);text-align:center;margin-bottom:42px;">
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#c9a24b;text-transform:uppercase;">Our proud partners</div>
+      <h2 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,40px);font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">Backed by the community.</h2>
+    </div>
+    <div data-reveal="1" style="opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1);display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <sc-for list="{{ sponsors }}" as="sp" hint-placeholder-count="8">
+        <div style="height:104px;display:flex;align-items:center;justify-content:center;background:#141417;border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;padding:16px;transition:all .25s ease;" style-hover="border-color:rgba(201,162,75,0.35);background:#18181c;transform:translateY(-3px);">
+          <dc-import name="Placeholder" sid="home-sponsor-{{ $index }}" label="SPONSOR LOGO" hint-size="100%,100%" style="width:100%;height:100%;display:block;border-radius:8px;overflow:hidden;"></dc-import>
+        </div>
+      </sc-for>
+      <a href="Sponsors.dc.html" style="height:104px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#1a1610,#141417);border:1px solid rgba(201,162,75,0.3);border-radius:16px;text-decoration:none;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#e3c277;text-transform:uppercase;transition:all .25s ease;" style-hover="background:rgba(201,162,75,0.1);transform:translateY(-3px);">Become a Sponsor →</a>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.rootRef = React.createRef();
+  }
+  reveal(el) {
+    if (el._revealed) return;
+    el._revealed = true;
+    const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+    // Drive the reveal through the element's own CSS transition (already on
+    // its inline style). Far more robust than WAAPI in re-rendered / observer-
+    // throttled contexts — it can never get stuck at opacity 0.
+    el.style.transitionDelay = d + 'ms';
+    requestAnimationFrame(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.style.filter = 'none';
+      el.setAttribute('data-shown', '1');
+    });
+  }
+  setup() {
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { this.reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => { if (!el._revealed) io.observe(el); });
+
+    const cio = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { this.animateCount(e.target); cio.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('[data-count]').forEach((el) => { if (!el._counted) cio.observe(el); });
+
+    this._parallax = document.querySelectorAll('[data-parallax]');
+    if (!this._onScroll) {
+      this._onScroll = () => {
+        const y = window.scrollY;
+        this._parallax.forEach((el) => {
+          const sp = parseFloat(el.getAttribute('data-parallax')) || 0.15;
+          el.style.transform = 'translate3d(0,' + (y * sp) + 'px,0) scale(1.14)';
+        });
+        // Fallback reveal: catch any in-view [data-reveal] the observer missed
+        // (e.g. nodes recreated by a direct edit).
+        const vh = window.innerHeight;
+        document.querySelectorAll('[data-reveal]').forEach((el) => {
+          if (el._revealed) return;
+          const r = el.getBoundingClientRect();
+          if (r.top < vh * 0.95 && r.bottom > 0) this.reveal(el);
+        });
+      };
+      window.addEventListener('scroll', this._onScroll, { passive: true });
+    }
+    this._onScroll();
+  }
+  componentDidMount() {
+    // Defer past initial streamed render, then re-run to catch late children.
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setup()));
+    this._retry = setTimeout(() => this.setup(), 600);
+    this._safety = setTimeout(() => { document.querySelectorAll('[data-reveal]').forEach((el) => { if (el._revealed || el._r) return; const r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) { if (el._anim) { try { el._anim.cancel(); } catch (e) {} } el.style.opacity = '1'; el.style.transform = 'none'; el._revealed = true; } }); }, 1800);
+  }
+  animateCount(el) {
+    if (el._counted) return;
+    el._counted = true;
+    const target = parseFloat(el.getAttribute('data-count')) || 0;
+    const suffix = el.getAttribute('data-suffix') || '';
+    const dur = 1500, start = performance.now();
+    const step = (now) => {
+      const p = Math.min(1, (now - start) / dur);
+      const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * e) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  componentDidUpdate() {
+    // Re-scan after any re-render (e.g. a direct edit) so newly created
+    // [data-reveal] nodes get observed and revealed instead of staying hidden.
+    this.setup();
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      if (el._revealed) { el.setAttribute('data-shown', '1'); return; }
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) this.reveal(el);
+    });
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    clearTimeout(this._safety);
+  }
+  renderVals() {
+    return {
+      rootRef: this.rootRef,
+      schedule: [
+        { m: 'MAY', d: '18', title: 'Training Session', time: '6:00 PM', loc: 'Orlando, FL', tag: 'TRAINING', tagBg: 'rgba(201,162,75,0.15)', tagColor: '#e3c277' },
+        { m: 'MAY', d: '21', title: 'Friendly Match', time: '7:30 PM', loc: 'Kissimmee, FL', tag: 'FRIENDLY', tagBg: 'rgba(86,132,224,0.16)', tagColor: '#93b2f0' },
+        { m: 'MAY', d: '25', title: 'USSL League Match', time: '7:00 PM', loc: 'Orlando, FL', tag: 'MATCH', tagBg: 'rgba(208,40,46,0.16)', tagColor: '#f0888b' },
+        { m: 'MAY', d: '28', title: 'Training Session', time: '6:00 PM', loc: 'Orlando, FL', tag: 'TRAINING', tagBg: 'rgba(201,162,75,0.15)', tagColor: '#e3c277' },
+        { m: 'JUN', d: '01', title: 'USSL League Match', time: '7:00 PM', loc: 'Orlando, FL', tag: 'MATCH', tagBg: 'rgba(208,40,46,0.16)', tagColor: '#f0888b' },
+      ],
+      players: [
+        { n: '7', name: 'John Smith', pos: 'Midfielder' },
+        { n: '10', name: 'Carlos Martinez', pos: 'Forward' },
+        { n: '4', name: 'David Lopez', pos: 'Defender' },
+        { n: '1', name: 'Michael Johnson', pos: 'Goalkeeper' },
+      ],
+      tiers: [
+        { amt: '$25', desc: 'Training equipment' },
+        { amt: '$50', desc: 'Field rental costs' },
+        { amt: '$100', desc: 'Player development' },
+        { amt: 'Custom', desc: 'Choose your amount' },
+      ],
+      stats: [
+        { v: 28, suffix: '', l: 'Players Registered' },
+        { v: 12, suffix: '', l: 'Matches Played' },
+        { v: 31, suffix: '', l: 'Goals Scored' },
+        { v: 150, suffix: '+', l: 'Community Hours' },
+      ],
+      news: [
+        { cat: 'Club News', date: 'May 10', title: 'Aslan FC announces open tryouts for the 2026 season', img: 'TRYOUTS ANNOUNCEMENT', delay: '0' },
+        { cat: 'Partnerships', date: 'May 5', title: 'Welcome our newest sponsorship partner to the family', img: 'PARTNER ANNOUNCEMENT', delay: '120' },
+        { cat: 'Match Recap', date: 'Apr 30', title: 'Aslan FC vs Orlando United — full match recap', img: 'MATCH RECAP', delay: '240' },
+      ],
+      igTiles: ['MATCH DAY', 'THE SQUAD', 'TRAINING', 'SUPPORTERS', 'GOAL!', 'ACADEMY'],
+      sponsors: ['AdventHealth', 'Nike', 'BodyArmor', 'Soccer.com', 'Puma', 'Publix', 'Gatorade'],
+    };
+  }
+}
+</script>
+</body>
+</html>

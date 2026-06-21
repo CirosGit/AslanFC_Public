@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0a0a0b;color:#f4f4f3;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  ::selection{background:rgba(201,162,75,0.3);color:#fff;}
+</style>
+</helmet>
+<div style="background:#0a0a0b;overflow-x:hidden;">
+  <dc-import name="Nav" active="news" solid="true" hint-size="100%,74px"></dc-import>
+
+  <section style="position:relative;padding:160px 30px 60px;background:linear-gradient(180deg,#0f0f13,#0a0a0b);border-bottom:1px solid rgba(255,255,255,0.06);overflow:hidden;">
+    <img src="assets/aslan-logo.png" alt="" style="position:absolute;right:-70px;top:50%;transform:translateY(-50%);height:420px;opacity:0.05;pointer-events:none;"/>
+    <div style="max-width:1340px;margin:0 auto;position:relative;">
+      <div data-reveal="1" style="opacity:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#c9a24b;text-transform:uppercase;display:flex;align-items:center;gap:12px;"><span style="width:28px;height:1px;background:#c9a24b;"></span>Newsroom</div>
+      <h1 data-reveal="1" data-delay="80" style="opacity:0;margin:20px 0 0;font-size:clamp(44px,6vw,84px);line-height:0.96;font-weight:800;letter-spacing:-0.025em;color:#f4f4f3;">Latest news.</h1>
+      <p data-reveal="1" data-delay="170" style="opacity:0;margin:24px 0 0;font-size:19px;line-height:1.6;color:#b4b4ba;max-width:600px;">Match reports, club announcements, and stories from inside the pride.</p>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section style="max-width:1340px;margin:0 auto;padding:70px 30px 30px;">
+    <a href="Article.dc.html?id=tryouts-2026" data-reveal="1" style="opacity:0;display:grid;grid-template-columns:1.2fr 1fr;gap:0;background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:24px;overflow:hidden;text-decoration:none;transition:border-color .3s ease;" style-hover="border-color:rgba(201,162,75,0.32);">
+      <div style="aspect-ratio:16/10;overflow:hidden;">
+        <dc-import name="Placeholder" sid="news-featured" label="FEATURED STORY IMAGE" hint-size="100%,100%" style="width:100%;height:100%;display:block;"></dc-import>
+      </div>
+      <div style="padding:48px;display:flex;flex-direction:column;justify-content:center;">
+        <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#c9a24b;text-transform:uppercase;">Featured · Club News · May 10</div>
+        <h2 style="margin:16px 0 0;font-size:clamp(26px,2.8vw,38px);line-height:1.12;font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">Aslan FC announces open tryouts for the 2026 season</h2>
+        <p style="margin:16px 0 0;font-size:16px;line-height:1.65;color:#9b9ba1;">The club opens its doors to the next generation of talent. Registration is now live for first team, reserves, and academy tryouts across Central Florida.</p>
+        <div style="margin-top:24px;font-size:13px;font-weight:700;letter-spacing:0.05em;color:#e3c277;text-transform:uppercase;">Read full story →</div>
+      </div>
+    </a>
+  </section>
+
+  <!-- GRID -->
+  <section style="max-width:1340px;margin:0 auto;padding:30px 30px 100px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <sc-for list="{{ articles }}" as="a" hint-placeholder-count="6">
+        <a href="Article.dc.html?id={{ a.id }}" data-reveal="1" data-delay="{{ a.delay }}" style="opacity:0;text-decoration:none;background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;display:block;transition:transform .28s ease, border-color .28s ease;" style-hover="transform:translateY(-5px);border-color:rgba(201,162,75,0.32);">
+          <div style="overflow:hidden;aspect-ratio:16/10;">
+            <div style="width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1);" style-hover="transform:scale(1.07);">
+              <dc-import name="Placeholder" sid="news-grid-{{ $index }}" label="{{ a.img }}" hint-size="100%,100%" style="width:100%;height:100%;display:block;"></dc-import>
+            </div>
+          </div>
+          <div style="padding:24px;">
+            <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.16em;color:#c9a24b;text-transform:uppercase;">{{ a.cat }} · {{ a.date }}</div>
+            <h3 style="margin:12px 0 0;font-size:19px;font-weight:700;line-height:1.3;color:#f4f4f3;">{{ a.title }}</h3>
+            <p style="margin:12px 0 0;font-size:14px;line-height:1.6;color:#9b9ba1;">{{ a.excerpt }}</p>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1340,&quot;height&quot;:900},&quot;revealStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Fade up&quot;,&quot;Fade + zoom&quot;,&quot;Slide in&quot;,&quot;Blur in&quot;],&quot;default&quot;:&quot;Fade up&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;motionIntensity&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Subtle&quot;,&quot;Medium&quot;,&quot;Bold&quot;],&quot;default&quot;:&quot;Medium&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;imageParallax&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;scrollProgress&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  revealParams() {
+    const style = this.props.revealStyle || 'Fade up';
+    const map = { Subtle: { dist: 14, dur: 620 }, Medium: { dist: 28, dur: 780 }, Bold: { dist: 54, dur: 980 } };
+    const m = map[this.props.motionIntensity] || map.Medium;
+    return { style, dist: m.dist, dur: m.dur };
+  }
+  reveal(el) {
+    if (el._r) return;
+    el._r = true;
+    const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+    const { style, dist, dur } = this.revealParams();
+    let from, to;
+    if (style === 'Fade + zoom') {
+      from = { opacity: 0, transform: 'translateY(' + (dist * 0.5) + 'px) scale(0.9)' };
+      to = { opacity: 1, transform: 'translateY(0) scale(1)' };
+    } else if (style === 'Slide in') {
+      const dir = ((this._slideI = (this._slideI || 0) + 1) % 2) ? -1 : 1;
+      from = { opacity: 0, transform: 'translateX(' + (dir * dist * 1.8) + 'px)' };
+      to = { opacity: 1, transform: 'translateX(0)' };
+    } else if (style === 'Blur in') {
+      from = { opacity: 0, filter: 'blur(12px)', transform: 'translateY(' + (dist * 0.4) + 'px)' };
+      to = { opacity: 1, filter: 'blur(0px)', transform: 'translateY(0)' };
+    } else {
+      from = { opacity: 0, transform: 'translateY(' + dist + 'px)' };
+      to = { opacity: 1, transform: 'translateY(0)' };
+    }
+    const a = el._anim = el.animate([from, to], { duration: dur, delay: d, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' });
+    a.onfinish = () => { el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none'; };
+  }
+  setup() {
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { this.reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => { if (!el._r) io.observe(el); });
+  }
+  componentDidMount() {
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setup()));
+    this._t = setTimeout(() => this.setup(), 600);
+    this._s = setTimeout(() => { document.querySelectorAll('[data-reveal]').forEach((el) => { if (el._r) return; const r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) { if (el._anim) { try { el._anim.cancel(); } catch (e) {} } el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none'; el._r = true; } }); }, 1800);
+
+    // Scroll progress bar (created in JS so the page markup is untouched)
+    this._bar = document.createElement('div');
+    this._bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;width:0;z-index:1100;background:linear-gradient(90deg,#c9a24b,#e7c97e);box-shadow:0 0 12px rgba(201,162,75,0.55);pointer-events:none;transition:width .08s linear;';
+    document.body.appendChild(this._bar);
+
+    this._imgs = null;
+    let ticking = false;
+    this._onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const sp = window.scrollY;
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        if (this.props.scrollProgress !== false) {
+          this._bar.style.display = 'block';
+          this._bar.style.width = (docH > 0 ? (sp / docH) * 100 : 0) + '%';
+        } else {
+          this._bar.style.display = 'none';
+        }
+        if (!this._imgs) {
+          this._imgs = [];
+          document.querySelectorAll('a[href^="Article.dc.html"]').forEach((card) => {
+            const root = card.querySelector('div[style*="position: relative"]');
+            if (root) this._imgs.push(root);
+          });
+        }
+        const on = this.props.imageParallax !== false;
+        const vh = window.innerHeight;
+        this._imgs.forEach((root) => {
+          if (!on) { root.style.transform = ''; return; }
+          const rect = root.getBoundingClientRect();
+          const prog = (rect.top + rect.height / 2 - vh / 2) / vh;
+          const py = Math.max(-16, Math.min(16, prog * 22));
+          root.style.transform = 'translateY(' + py.toFixed(1) + 'px) scale(1.08)';
+        });
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+  componentDidUpdate() {
+    if (this._onScroll) this._onScroll();
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._bar && this._bar.remove) this._bar.remove();
+    clearTimeout(this._t);
+    clearTimeout(this._s);
+  }
+  renderVals() {
+    return {
+      articles: [
+        { id: 'sponsorship-partner', cat: 'Partnerships', date: 'May 5', title: 'Welcome our newest sponsorship partner', excerpt: 'A new local partner joins the Aslan FC family to support player development and community programs.', img: 'PARTNER ANNOUNCEMENT', delay: '0' },
+        { id: 'lakeland-recap', cat: 'Match Recap', date: 'Apr 30', title: 'Aslan FC 3–1 Lakeland: a statement win at home', excerpt: 'A dominant second-half display sees the lions roar past Lakeland in front of a packed home crowd.', img: 'MATCH RECAP', delay: '100' },
+        { id: 'youth-clinic', cat: 'Community', date: 'Apr 22', title: 'Players give back with youth clinic', excerpt: 'First team players hosted a free skills clinic for local kids as part of our community commitment.', img: 'COMMUNITY CLINIC', delay: '200' },
+        { id: 'academy-graduates', cat: 'Academy', date: 'Apr 15', title: 'Three academy graduates earn first team minutes', excerpt: 'The pathway works — three homegrown players make their senior debuts this month.', img: 'ACADEMY GRADUATES', delay: '0' },
+        { id: 'new-kit', cat: 'Club News', date: 'Apr 8', title: 'New home kit revealed for the season ahead', excerpt: 'Black and gold, reimagined. Take a first look at the kit the lions will wear this campaign.', img: 'NEW KIT REVEAL', delay: '100' },
+        { id: 'coach-interview', cat: 'Interview', date: 'Apr 1', title: 'Coach Ramos on building a culture, not just a team', excerpt: 'Our founder sits down to talk philosophy, ambition, and what the crest really means.', img: 'COACH INTERVIEW', delay: '200' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0a0a0b;color:#f4f4f3;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  ::selection{background:rgba(201,162,75,0.3);color:#fff;}
+</style>
+</helmet>
+<div style="background:#0a0a0b;overflow-x:hidden;">
+  <dc-import name="Nav" active="teams" solid="true" hint-size="100%,74px"></dc-import>
+
+  <section style="position:relative;padding:160px 30px 80px;background:linear-gradient(180deg,#0f0f13,#0a0a0b);border-bottom:1px solid rgba(255,255,255,0.06);overflow:hidden;">
+    <img src="assets/aslan-logo.png" alt="" style="position:absolute;right:-70px;top:50%;transform:translateY(-50%);height:420px;opacity:0.05;pointer-events:none;"/>
+    <div style="max-width:1340px;margin:0 auto;position:relative;">
+      <div data-reveal="1" style="opacity:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#c9a24b;text-transform:uppercase;display:flex;align-items:center;gap:12px;"><span style="width:28px;height:1px;background:#c9a24b;"></span>Our teams</div>
+      <h1 data-reveal="1" data-delay="80" style="opacity:0;margin:20px 0 0;font-size:clamp(44px,6vw,84px);line-height:0.96;font-weight:800;letter-spacing:-0.025em;color:#f4f4f3;max-width:900px;">One crest. Every level.</h1>
+      <p data-reveal="1" data-delay="170" style="opacity:0;margin:24px 0 0;font-size:19px;line-height:1.6;color:#b4b4ba;max-width:620px;">From the first team to the youngest academy side, every Aslan FC squad shares the same standard and the same ambition.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1340px;margin:0 auto;padding:80px 30px 40px;display:flex;flex-direction:column;gap:28px;">
+    <sc-for list="{{ teams }}" as="t" hint-placeholder-count="3">
+      <div data-reveal="1" style="opacity:0;display:grid;grid-template-columns:1.1fr 1fr;gap:0;background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:24px;overflow:hidden;transition:border-color .3s ease;" style-hover="border-color:rgba(201,162,75,0.32);">
+        <div style="aspect-ratio:16/10;overflow:hidden;">
+          <dc-import name="Placeholder" sid="teams-img-{{ $index }}" label="{{ t.img }}" hint-size="100%,100%" style="width:100%;height:100%;display:block;"></dc-import>
+        </div>
+        <div style="padding:44px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#c9a24b;text-transform:uppercase;">{{ t.tag }}</div>
+          <h2 style="margin:14px 0 0;font-size:clamp(28px,3vw,40px);font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">{{ t.name }}</h2>
+          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.65;color:#9b9ba1;">{{ t.body }}</p>
+          <div style="display:flex;gap:32px;margin-top:26px;">
+            <div><div style="font-size:26px;font-weight:800;color:#e3c277;">{{ t.s1v }}</div><div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#86868c;text-transform:uppercase;margin-top:4px;">{{ t.s1l }}</div></div>
+            <div><div style="font-size:26px;font-weight:800;color:#e3c277;">{{ t.s2v }}</div><div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#86868c;text-transform:uppercase;margin-top:4px;">{{ t.s2l }}</div></div>
+            <div><div style="font-size:26px;font-weight:800;color:#e3c277;">{{ t.s3v }}</div><div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#86868c;text-transform:uppercase;margin-top:4px;">{{ t.s3l }}</div></div>
+          </div>
+          <a href="Players.dc.html" style="margin-top:28px;align-self:flex-start;display:inline-flex;align-items:center;text-decoration:none;border:1px solid rgba(201,162,75,0.35);color:#e3c277;font-weight:700;font-size:13px;letter-spacing:0.05em;text-transform:uppercase;padding:13px 24px;border-radius:100px;transition:background .25s ease;" style-hover="background:rgba(201,162,75,0.09);">View Squad →</a>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="background:#0c0c0e;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);margin-top:60px;">
+    <div style="max-width:1340px;margin:0 auto;padding:90px 30px;">
+      <div data-reveal="1" style="opacity:0;text-align:center;margin-bottom:54px;">
+        <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#c9a24b;text-transform:uppercase;">The people behind it</div>
+        <h2 style="margin:14px 0 0;font-size:clamp(30px,3.6vw,46px);font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">Coaching &amp; staff.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;">
+        <sc-for list="{{ staff }}" as="s" hint-placeholder-count="4">
+          <div data-reveal="1" data-delay="{{ s.delay }}" style="opacity:0;background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;transition:transform .25s ease, border-color .25s ease;" style-hover="transform:translateY(-4px);border-color:rgba(201,162,75,0.3);">
+            <div style="aspect-ratio:1/1;overflow:hidden;">
+              <dc-import name="Placeholder" sid="teams-staff-{{ $index }}" label="{{ s.role }}" hint-size="100%,100%" style="width:100%;height:100%;display:block;"></dc-import>
+            </div>
+            <div style="padding:20px;">
+              <h3 style="margin:0;font-size:17px;font-weight:700;color:#f4f4f3;">{{ s.name }}</h3>
+              <div style="margin-top:5px;font-size:13px;color:#c9a24b;">{{ s.role }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1340,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  reveal(el) {
+    if (el._r) return;
+    el._r = true;
+    const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+    const a = el._anim = el.animate(
+      [{ opacity: 0, transform: 'translateY(26px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 780, delay: d, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' }
+    );
+    a.onfinish = () => { el.style.opacity = '1'; el.style.transform = 'none'; };
+  }
+  setup() {
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { this.reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => { if (!el._r) io.observe(el); });
+  }
+  componentDidMount() {
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setup()));
+    this._t = setTimeout(() => this.setup(), 600);
+    this._s = setTimeout(() => { document.querySelectorAll('[data-reveal]').forEach((el) => { if (el._r) return; const r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) { if (el._anim) { try { el._anim.cancel(); } catch (e) {} } el.style.opacity = '1'; el.style.transform = 'none'; el._r = true; } }); }, 1800);
+  }
+  renderVals() {
+    return {
+      teams: [
+        { tag: 'Senior · USSL', name: 'First Team', img: 'FIRST TEAM — MATCH ACTION', body: 'Our flagship side competing in semi-professional league play. The pinnacle of the pathway and the standard every academy player aspires to reach.', s1v: '28', s1l: 'Players', s2v: '12', s2l: 'Matches', s3v: '31', s3l: 'Goals' },
+        { tag: 'Development', name: 'Reserves / U23', name2: '', img: 'RESERVES — TRAINING', body: 'The bridge between academy and first team. Young talent earning minutes, sharpening their game, and pushing for a senior call-up.', s1v: '22', s1l: 'Players', s2v: '8', s2l: 'Matches', s3v: '19', s3l: 'Goals' },
+        { tag: 'Youth', name: 'Academy', img: 'ACADEMY — YOUTH SIDE', body: 'Where the journey begins. Structured coaching and real competition for our youngest athletes, built on the same values as the first team.', s1v: '40', s1l: 'Players', s2v: '3', s2l: 'Age Groups', s3v: '100%', s3l: 'Commitment' },
+      ],
+      staff: [
+        { name: 'Ruben Ramos', role: 'Founder & Head Coach', delay: '0' },
+        { name: 'Assistant Coach', role: 'First Team', delay: '100' },
+        { name: 'Academy Director', role: 'Youth Development', delay: '200' },
+        { name: 'Team Manager', role: 'Operations', delay: '300' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

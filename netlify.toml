@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+
+# Serve every file exactly as uploaded. This turns OFF Netlify's "asset
+# optimization" (Pretty URLs), which was stripping ".html" from filenames and
+# making the shared page-pieces (Nav.dc.html, Footer.dc.html, …) unreachable —
+# which is why only the hero photo showed and nothing else rendered.
+[build.processing]
+  skip_processing = true

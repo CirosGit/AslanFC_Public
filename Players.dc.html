@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0a0a0b;color:#f4f4f3;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  ::selection{background:rgba(201,162,75,0.3);color:#fff;}
+</style>
+</helmet>
+<div style="background:#0a0a0b;overflow-x:hidden;">
+  <dc-import name="Nav" active="players" solid="true" hint-size="100%,74px"></dc-import>
+
+  <section style="position:relative;padding:160px 30px 60px;background:linear-gradient(180deg,#0f0f13,#0a0a0b);border-bottom:1px solid rgba(255,255,255,0.06);overflow:hidden;">
+    <img src="assets/aslan-logo.png" alt="" style="position:absolute;right:-70px;top:50%;transform:translateY(-50%);height:420px;opacity:0.05;pointer-events:none;"/>
+    <div style="max-width:1340px;margin:0 auto;position:relative;">
+      <div data-reveal="1" style="opacity:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#c9a24b;text-transform:uppercase;display:flex;align-items:center;gap:12px;"><span style="width:28px;height:1px;background:#c9a24b;"></span>First team squad</div>
+      <h1 data-reveal="1" data-delay="80" style="opacity:0;margin:20px 0 0;font-size:clamp(44px,6vw,84px);line-height:0.96;font-weight:800;letter-spacing:-0.025em;color:#f4f4f3;">Meet the roster.</h1>
+      <p data-reveal="1" data-delay="170" style="opacity:0;margin:24px 0 0;font-size:19px;line-height:1.6;color:#b4b4ba;max-width:600px;">The players carrying the crest this season.</p>
+    </div>
+  </section>
+
+  <!-- FILTER -->
+  <section style="max-width:1340px;margin:0 auto;padding:40px 30px 0;">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:24px;">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+        <button onClick="{{ f.onClick }}" style="background:{{ f.bg }};border:1px solid {{ f.border }};color:{{ f.color }};font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:11px 20px;border-radius:100px;cursor:pointer;transition:all .2s ease;">{{ f.label }}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <section style="max-width:1340px;margin:0 auto;padding:36px 30px 100px;">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;">
+      <sc-for list="{{ shown }}" as="p" hint-placeholder-count="8">
+        <div style="background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;transition:transform .28s ease, border-color .28s ease;" style-hover="transform:translateY(-6px);border-color:rgba(201,162,75,0.4);">
+          <div style="position:relative;aspect-ratio:3/4;overflow:hidden;">
+            <dc-import name="Placeholder" sid="players-photo-{{ $index }}" label="PLAYER PHOTO" hint-size="100%,100%" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></dc-import>
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,10,11,0.85),rgba(10,10,11,0) 55%);"></div>
+            <span style="position:absolute;left:18px;bottom:14px;font-size:46px;font-weight:800;line-height:1;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,0.5);">{{ p.n }}</span>
+            <span style="position:absolute;right:14px;top:14px;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.1em;padding:5px 9px;border-radius:7px;background:rgba(201,162,75,0.18);color:#e3c277;text-transform:uppercase;">{{ p.posShort }}</span>
+          </div>
+          <div style="padding:18px 20px 22px;">
+            <h3 style="margin:0;font-size:18px;font-weight:700;color:#f4f4f3;">{{ p.name }}</h3>
+            <div style="margin-top:5px;font-size:13px;color:#9b9ba1;">{{ p.pos }}</div>
+            <div style="margin-top:14px;display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#6c6c72;text-transform:uppercase;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;"><span>{{ p.foot }}</span><span>{{ p.nat }}</span></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1340,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { filter: 'ALL' };
+  reveal(el) {
+    if (el._r) return;
+    el._r = true;
+    const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+    const a = el._anim = el.animate(
+      [{ opacity: 0, transform: 'translateY(26px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 780, delay: d, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' }
+    );
+    a.onfinish = () => { el.style.opacity = '1'; el.style.transform = 'none'; };
+  }
+  setup() {
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { this.reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => { if (!el._r) io.observe(el); });
+  }
+  componentDidMount() {
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setup()));
+    this._t = setTimeout(() => this.setup(), 600);
+    this._s = setTimeout(() => { document.querySelectorAll('[data-reveal]').forEach((el) => { if (el._r) return; const r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) { if (el._anim) { try { el._anim.cancel(); } catch (e) {} } el.style.opacity = '1'; el.style.transform = 'none'; el._r = true; } }); }, 1800);
+  }
+  renderVals() {
+    const all = [
+      { n: '1', name: 'Michael Johnson', pos: 'Goalkeeper', posShort: 'GK', g: 'GK', foot: 'Right', nat: 'USA' },
+      { n: '4', name: 'David Lopez', pos: 'Centre Back', posShort: 'DEF', g: 'DEF', foot: 'Left', nat: 'MEX' },
+      { n: '3', name: 'Andre Silva', pos: 'Left Back', posShort: 'DEF', g: 'DEF', foot: 'Left', nat: 'BRA' },
+      { n: '5', name: 'Marcus Reed', pos: 'Centre Back', posShort: 'DEF', g: 'DEF', foot: 'Right', nat: 'USA' },
+      { n: '2', name: 'Diego Torres', pos: 'Right Back', posShort: 'DEF', g: 'DEF', foot: 'Right', nat: 'COL' },
+      { n: '6', name: 'Samuel Owusu', pos: 'Defensive Mid', posShort: 'MID', g: 'MID', foot: 'Right', nat: 'GHA' },
+      { n: '8', name: 'Liam Carter', pos: 'Central Mid', posShort: 'MID', g: 'MID', foot: 'Right', nat: 'USA' },
+      { n: '7', name: 'John Smith', pos: 'Attacking Mid', posShort: 'MID', g: 'MID', foot: 'Left', nat: 'USA' },
+      { n: '11', name: 'Kevin Nunez', pos: 'Winger', posShort: 'FWD', g: 'FWD', foot: 'Right', nat: 'ARG' },
+      { n: '10', name: 'Carlos Martinez', pos: 'Forward', posShort: 'FWD', g: 'FWD', foot: 'Right', nat: 'MEX' },
+      { n: '9', name: 'Tunde Bello', pos: 'Striker', posShort: 'FWD', g: 'FWD', foot: 'Left', nat: 'NGA' },
+      { n: '17', name: 'Eric Vasquez', pos: 'Winger', posShort: 'FWD', g: 'FWD', foot: 'Left', nat: 'USA' },
+    ];
+    const f = this.state.filter;
+    const shown = f === 'ALL' ? all : all.filter((p) => p.g === f);
+    const opts = [['ALL', 'All'], ['GK', 'Keepers'], ['DEF', 'Defenders'], ['MID', 'Midfielders'], ['FWD', 'Forwards']];
+    const filters = opts.map(([v, label]) => {
+      const active = f === v;
+      return {
+        label, value: v,
+        bg: active ? 'linear-gradient(180deg,#e7c97e,#c9a24b)' : 'rgba(255,255,255,0.03)',
+        border: active ? 'rgba(201,162,75,0.6)' : 'rgba(255,255,255,0.12)',
+        color: active ? '#1c1408' : '#b4b4ba',
+        onClick: () => this.setState({ filter: v }),
+      };
+    });
+    return { shown, filters };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0a0a0b;color:#f4f4f3;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  ::selection{background:rgba(201,162,75,0.3);color:#fff;}
+  input::placeholder,select{color:#6c6c72;}
+</style>
+</helmet>
+<div style="background:#0a0a0b;overflow-x:hidden;">
+  <dc-import name="Nav" active="academy" solid="true" hint-size="100%,74px"></dc-import>
+
+  <!-- FULL-BLEED HERO -->
+  <section style="position:relative;min-height:78vh;display:flex;align-items:flex-end;overflow:hidden;">
+    <div style="position:absolute;inset:0;">
+      <dc-import name="Placeholder" sid="academy-hero" label="ACADEMY — TRAINING SESSION (FULL BLEED)" hint-size="100%,100%" style="position:absolute;inset:0;"></dc-import>
+    </div>
+    <div style="position:absolute;inset:0;background:linear-gradient(0deg,#0a0a0b 4%,rgba(10,10,11,0.4) 50%,rgba(10,10,11,0.7) 100%);"></div>
+    <div style="position:relative;z-index:3;max-width:1340px;margin:0 auto;width:100%;padding:0 30px 70px;">
+      <div data-reveal="1" style="opacity:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#e3c277;text-transform:uppercase;margin-bottom:18px;">The future starts here</div>
+      <h1 data-reveal="1" data-delay="90" style="opacity:0;margin:0;font-size:clamp(46px,6.4vw,92px);line-height:0.94;font-weight:800;letter-spacing:-0.025em;color:#f4f4f3;max-width:820px;">Aslan FC Academy</h1>
+      <p data-reveal="1" data-delay="180" style="opacity:0;margin:22px 0 0;font-size:19px;line-height:1.6;color:#d4d4d8;max-width:560px;">A professional pathway for young athletes — built on elite coaching, real competition, and the values of the pride.</p>
+    </div>
+  </section>
+
+  <!-- PATHWAY -->
+  <section style="max-width:1340px;margin:0 auto;padding:90px 30px;">
+    <div data-reveal="1" style="opacity:0;max-width:640px;margin-bottom:54px;">
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#c9a24b;text-transform:uppercase;">The pathway</div>
+      <h2 style="margin:14px 0 0;font-size:clamp(30px,3.6vw,46px);font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">From grassroots to the first team.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <div data-reveal="1" data-delay="{{ s.delay }}" style="opacity:0;background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:30px;position:relative;transition:border-color .25s ease, transform .25s ease;" style-hover="border-color:rgba(201,162,75,0.35);transform:translateY(-4px);">
+          <div style="font-size:34px;font-weight:800;color:rgba(201,162,75,0.4);line-height:1;">{{ s.num }}</div>
+          <h3 style="margin:18px 0 0;font-size:20px;font-weight:800;color:#f4f4f3;">{{ s.title }}</h3>
+          <div style="margin:6px 0 0;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#c9a24b;text-transform:uppercase;">{{ s.age }}</div>
+          <p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#9b9ba1;">{{ s.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET + FORM -->
+  <section style="background:#0c0c0e;border-top:1px solid rgba(255,255,255,0.06);">
+    <div style="max-width:1340px;margin:0 auto;padding:90px 30px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+      <div data-reveal="1" style="opacity:0;">
+        <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#c9a24b;text-transform:uppercase;">What's included</div>
+        <h2 style="margin:14px 0 0;font-size:clamp(28px,3.2vw,42px);font-weight:800;letter-spacing:-0.02em;color:#f4f4f3;">Everything a young player needs.</h2>
+        <div style="margin-top:28px;display:flex;flex-direction:column;gap:16px;">
+          <sc-for list="{{ perks }}" as="p" hint-placeholder-count="5">
+            <div style="display:flex;align-items:flex-start;gap:14px;">
+              <span style="flex:none;width:24px;height:24px;border-radius:50%;background:rgba(201,162,75,0.15);color:#e3c277;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:1px;">✓</span>
+              <div><div style="font-size:16px;font-weight:700;color:#f4f4f3;">{{ p.title }}</div><div style="font-size:14px;color:#9b9ba1;margin-top:2px;">{{ p.body }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div data-reveal="1" data-delay="120" style="opacity:0;background:linear-gradient(180deg,#1a1610,#151518);border:1px solid rgba(201,162,75,0.22);border-radius:24px;padding:38px;">
+        <h3 style="margin:0;font-size:24px;font-weight:800;color:#f4f4f3;">Get more information</h3>
+        <p style="margin:10px 0 26px;font-size:14.5px;line-height:1.6;color:#b4b4ba;">Share a few details and our academy team will personally reach out to you with everything you need to know.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <input placeholder="Player's full name" style="background:#0f0f12;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 16px;color:#f4f4f3;font-size:14px;font-family:inherit;outline:none;"/>
+          <div style="display:flex;gap:14px;">
+            <input placeholder="Age" style="flex:1;min-width:0;background:#0f0f12;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 16px;color:#f4f4f3;font-size:14px;font-family:inherit;outline:none;"/>
+            <input placeholder="Position" style="flex:2;min-width:0;background:#0f0f12;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 16px;color:#f4f4f3;font-size:14px;font-family:inherit;outline:none;"/>
+          </div>
+          <input placeholder="Parent / guardian email" style="background:#0f0f12;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 16px;color:#f4f4f3;font-size:14px;font-family:inherit;outline:none;"/>
+          <button style="margin-top:6px;background:linear-gradient(180deg,#e7c97e,#c9a24b);color:#1c1408;border:none;font-weight:800;font-size:14px;letter-spacing:0.05em;text-transform:uppercase;padding:15px;border-radius:12px;cursor:pointer;font-family:inherit;transition:transform .2s ease;" style-hover="transform:translateY(-2px);">Get more information</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1340,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  reveal(el) {
+    if (el._r) return;
+    el._r = true;
+    const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+    const a = el._anim = el.animate(
+      [{ opacity: 0, transform: 'translateY(26px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 780, delay: d, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' }
+    );
+    a.onfinish = () => { el.style.opacity = '1'; el.style.transform = 'none'; };
+  }
+  setup() {
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { this.reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => { if (!el._r) io.observe(el); });
+  }
+  componentDidMount() {
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setup()));
+    this._t = setTimeout(() => this.setup(), 600);
+    this._s = setTimeout(() => { document.querySelectorAll('[data-reveal]').forEach((el) => { if (el._r) return; const r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) { if (el._anim) { try { el._anim.cancel(); } catch (e) {} } el.style.opacity = '1'; el.style.transform = 'none'; el._r = true; } }); }, 1800);
+  }
+  renderVals() {
+    return {
+      steps: [
+        { num: '01', title: 'Foundation', age: 'Ages 8–11', body: 'Building technical fundamentals and a love for the game in a supportive environment.', delay: '0' },
+        { num: '02', title: 'Development', age: 'Ages 12–14', body: 'Position-specific coaching, tactical understanding, and competitive league play.', delay: '100' },
+        { num: '03', title: 'Pre-Academy', age: 'Ages 15–17', body: 'High-performance training and exposure to a professional standard of football.', delay: '200' },
+        { num: '04', title: 'Senior Pathway', age: 'Ages 18+', body: 'The bridge to our reserves and first team for the players who earn it.', delay: '300' },
+      ],
+      perks: [
+        { title: 'Professional coaching', body: 'UEFA / USSF-licensed coaches with a clear curriculum.' },
+        { title: 'Real competition', body: 'Regular league fixtures and tournaments across Florida.' },
+        { title: 'Strength & conditioning', body: 'Age-appropriate athletic development and injury prevention.' },
+        { title: 'College & pro guidance', body: 'Support with recruitment, showcases, and the next step.' },
+        { title: 'Full kit & equipment', body: 'Every academy player is outfitted in the crest.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

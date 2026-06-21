@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0a0a0b;color:#f4f4f3;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  ::selection{background:rgba(201,162,75,0.3);color:#fff;}
+  input::placeholder,textarea::placeholder{color:#6c6c72;}
+</style>
+</helmet>
+<div style="background:#0a0a0b;overflow-x:hidden;">
+  <dc-import name="Nav" active="contact" solid="true" hint-size="100%,74px"></dc-import>
+
+  <section style="position:relative;padding:160px 30px 60px;background:linear-gradient(180deg,#0f0f13,#0a0a0b);border-bottom:1px solid rgba(255,255,255,0.06);overflow:hidden;">
+    <img src="assets/aslan-logo.png" alt="" style="position:absolute;right:-70px;top:50%;transform:translateY(-50%);height:420px;opacity:0.05;pointer-events:none;"/>
+    <div style="max-width:1340px;margin:0 auto;position:relative;">
+      <div data-reveal="1" style="opacity:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#c9a24b;text-transform:uppercase;display:flex;align-items:center;gap:12px;"><span style="width:28px;height:1px;background:#c9a24b;"></span>Get in touch</div>
+      <h1 data-reveal="1" data-delay="80" style="opacity:0;margin:20px 0 0;font-size:clamp(44px,6vw,84px);line-height:0.96;font-weight:800;letter-spacing:-0.025em;color:#f4f4f3;">Let's talk.</h1>
+      <p data-reveal="1" data-delay="170" style="opacity:0;margin:24px 0 0;font-size:19px;line-height:1.6;color:#b4b4ba;max-width:600px;">Tryouts, academy spots, partnerships, or just to say hello — we'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1340px;margin:0 auto;padding:70px 30px 60px;display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:start;">
+    <!-- INFO -->
+    <div data-reveal="1" style="opacity:0;display:flex;flex-direction:column;gap:16px;">
+      <sc-for list="{{ cards }}" as="c" hint-placeholder-count="4">
+        <div style="background:#151518;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:26px;transition:border-color .25s ease;" style-hover="border-color:rgba(201,162,75,0.3);">
+          <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#c9a24b;text-transform:uppercase;">{{ c.label }}</div>
+          <div style="margin-top:10px;font-size:18px;font-weight:700;color:#f4f4f3;">{{ c.value }}</div>
+          <div style="margin-top:4px;font-size:14px;color:#9b9ba1;">{{ c.sub }}</div>
+        </div>
+      </sc-for>
+      <div style="aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);">
+        <dc-import name="Placeholder" sid="contact-map" label="MAP — ORLANDO, FL" hint-size="100%,100%" style="width:100%;height:100%;display:block;"></dc-import>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div data-reveal="1" data-delay="120" style="opacity:0;background:linear-gradient(180deg,#161318,#151518);border:1px solid rgba(255,255,255,0.09);border-radius:24px;padding:42px;">
+      <h2 style="margin:0 0 6px;font-size:26px;font-weight:800;color:#f4f4f3;">Send us a message</h2>
+      <p style="margin:0 0 28px;font-size:14.5px;color:#9b9ba1;">We typically reply within 1–2 business days.</p>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;gap:16px;">
+          <input placeholder="First name" style="flex:1;min-width:0;background:#0f0f12;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:15px 16px;color:#f4f4f3;font-size:14px;font-family:inherit;outline:none;"/>
+          <input placeholder="Last name" style="flex:1;min-width:0;background:#0f0f12;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:15px 16px;color:#f4f4f3;font-size:14px;font-family:inherit;outline:none;"/>
+        </div>
+        <input placeholder="Email address" style="background:#0f0f12;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:15px 16px;color:#f4f4f3;font-size:14px;font-family:inherit;outline:none;"/>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <sc-for list="{{ topics }}" as="t" hint-placeholder-count="4">
+            <button onClick="{{ t.onClick }}" style="background:{{ t.bg }};border:1px solid {{ t.border }};color:{{ t.color }};font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:9px 16px;border-radius:100px;cursor:pointer;transition:all .2s ease;">{{ t.label }}</button>
+          </sc-for>
+        </div>
+        <textarea placeholder="Your message" rows="5" style="background:#0f0f12;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:15px 16px;color:#f4f4f3;font-size:14px;font-family:inherit;outline:none;resize:vertical;"></textarea>
+        <button style="background:linear-gradient(180deg,#e7c97e,#c9a24b);color:#1c1408;border:none;font-weight:800;font-size:14px;letter-spacing:0.05em;text-transform:uppercase;padding:16px;border-radius:12px;cursor:pointer;font-family:inherit;transition:transform .2s ease;" style-hover="transform:translateY(-2px);">Send message</button>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1340,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { topic: 'Tryouts' };
+  reveal(el) {
+    if (el._r) return;
+    el._r = true;
+    const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+    const a = el._anim = el.animate(
+      [{ opacity: 0, transform: 'translateY(26px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 780, delay: d, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' }
+    );
+    a.onfinish = () => { el.style.opacity = '1'; el.style.transform = 'none'; };
+  }
+  setup() {
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { this.reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => { if (!el._r) io.observe(el); });
+  }
+  componentDidMount() {
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setup()));
+    this._t = setTimeout(() => this.setup(), 600);
+    this._s = setTimeout(() => { document.querySelectorAll('[data-reveal]').forEach((el) => { if (el._r) return; const r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) { if (el._anim) { try { el._anim.cancel(); } catch (e) {} } el.style.opacity = '1'; el.style.transform = 'none'; el._r = true; } }); }, 1800);
+  }
+  renderVals() {
+    const opts = ['Tryouts', 'Academy', 'Sponsorship', 'General'];
+    const topics = opts.map((label) => {
+      const active = this.state.topic === label;
+      return {
+        label,
+        bg: active ? 'linear-gradient(180deg,#e7c97e,#c9a24b)' : 'rgba(255,255,255,0.03)',
+        border: active ? 'rgba(201,162,75,0.6)' : 'rgba(255,255,255,0.12)',
+        color: active ? '#1c1408' : '#b4b4ba',
+        onClick: () => this.setState({ topic: label }),
+      };
+    });
+    return {
+      topics,
+      cards: [
+        { label: 'Email', value: 'info@aslanfc.com', sub: 'General enquiries' },
+        { label: 'Phone', value: '(407) 123-4567', sub: 'Mon–Fri, 9am–5pm' },
+        { label: 'Location', value: 'Orlando, Florida', sub: 'Central Florida training grounds' },
+        { label: 'Social', value: '@aslanfc', sub: 'Instagram · Facebook · YouTube · TikTok' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
